@@ -1,0 +1,18 @@
+
+<div class="list-group list-group-light position-relative">
+  <a href="#" data-mdb-ripple-color="green"
+     class="list-group-item list-group-item-action d-flex justify-content-start align-items-center section-item">
+    <span class="material-icons material-symbols-outlined">chevron_left</span>
+    <b>
+      <%= section.title %>
+    </b>
+  </a>
+
+  <% $.each(section.categories, function(key, category) { %>
+  <a href="#" data-mdb-ripple-color="green" data-category-id="<%= category.id %>"
+     class="list-group-item list-group-item-action d-flex justify-content-between align-items-center category-item">
+    <%= category.title %>
+    <span class="material-icons material-symbols-outlined">chevron_right</span>
+  </a>
+  <% }); %>
+</div>

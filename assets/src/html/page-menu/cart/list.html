@@ -1,0 +1,81 @@
+
+<% if (filters.length > 0) { %>
+    <div class="cart_shops">
+        <% $.each(shops, function(key, shop) { %>
+        <div class="card rounded-0 cart_shop cart_shop-<%= shop.name %>">
+            <div class="card-header rounded-0 d-flex justify-content-between align-items-center">
+                <div>
+                    <div class="cart_shop__title fw-bold"><%= shop.title %></div>
+                    <div class="cart_shop__count-found text-muted">
+                        <span>Найдено товаров:</span>
+                        <span class="cart_shop__count-found__number">
+                            <span class="cart_shop__count-found__number_found">-</span>
+                            из
+                            <span class="cart_shop__count-found__number_of"><%= filters.length %></span>
+                        </span>
+                        <span class="cart_shop__copy material-icons-outlined ms-2" data-shop="<%= shop.name %>">content_copy</span>
+                    </div>
+                </div>
+                <div class="text-nowrap d-flex justify-content-between align-items-end gap-1">
+                    <span class="cart_shop__price"></span>
+                    <small class="cart_shop__price_currency text-muted"></small>
+                    <span class="material-icons material-symbols-outlined">expand_more</span>
+                </div>
+            </div>
+            <ul class="list-group rounded-0 list-group-light list-group-small cart_shop__products" style="display: none">
+                <% $.each(filters, function(key, filter) { %>
+                <li class="list-group-item cart_shop__product filter-key-<%= filter.key %>
+                           d-flex justify-content-between align-items-stretch p-0 placeholder-glow"
+                    data-filter-key="<%= filter.key %>" data-shop-name="<%= shop.name %>">
+                    <div class="cart-shop__product__img
+                                d-flex justify-content-center align-items-center">
+                        <i class="fs-1 fa-solid fa-spinner fa-spin-pulse"></i>
+                    </div>
+
+                    <div class="cart-shop__product__header p-2">
+                        <div class="cart-shop__product__header-title fw-normal lh-sm">
+                            <span class="placeholder col-9"></span>
+                        </div>
+                        <small class="cart-shop__product__header-subtitle text-muted"><%= filter.labels.join(', ') %></small>
+                    </div>
+
+                    <div class="cart-shop__product__price py-2 pe-2 text-right lh-sm">
+                        <div class="cart-shop__product__price-origin">
+                            <span class="cart-shop__product__price_amount">
+                                <span class="placeholder col-10"></span>
+                            </span>
+                            <small class="cart-shop__product__price_currency text-muted"></small>
+                        </div>
+
+                        <div class="cart-shop__product__price-standard text-muted mb-2" style="display: none">
+                            <div class="cart-shop__product__price-standard-row-1">
+                                <span class="cart-shop__product__price-standard-amount"></span>
+                                <small class="cart-shop__product__price-standard-currency"></small>
+                            </div>
+                            <div class="cart-shop__product__price-standard-row-2 mb-1">
+                                за <b class="cart-shop__product__price-standard-unit"></b>
+                            </div>
+                        </div>
+
+                        <div class="cart-shop__product__price-date text-muted"></div>
+                    </div>
+
+                    <div class="cart-shop__product__controls pe-2 pt-2">
+                        <button class="cart-shop__product__delete btn btn-sm btn-outline-warning" data-filter-key="<%= filter.key %>">
+                            <span class="material-icons material-symbols-outlined">delete</span>
+                        </button>
+                        <button class="cart-shop__product__catalog btn btn-sm btn-outline-dark mt-2" data-filter-key="<%= filter.key %>">
+                            <span class="material-icons material-symbols-outlined">settings</span>
+                        </button>
+                    </div>
+                </li>
+                <% }); %>
+            </ul>
+        </div>
+        <% }); %>
+    </div>
+<% } %>
+
+<% if (filters.length == 0) { %>
+<h4 class="px-3 mt-5 text-muted text-center">Корзина пуста</h4>
+<% } %>

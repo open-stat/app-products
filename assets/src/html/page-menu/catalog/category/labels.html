@@ -1,0 +1,81 @@
+<% if (filters.hasOwnProperty('product_title') && filters.product_title.length > 0) { %>
+  <% $.each(filters.product_title, function(key, label) { %>
+    <button type="button" class="btn btn-sm btn-tag btn-rounded d-flex align-items-center"
+            data-filter="product_title" data-filter-key="<%= key %>">
+        <span><%= label %></span>
+        <span class="material-icons material-symbols-outlined fs-6 ms-2">close</span>
+    </button>
+  <% }); %>
+<% } %>
+
+<% if (filters.hasOwnProperty('brand') && filters.brand.length > 0) { %>
+  <% $.each(filters.brand, function(key, label) { %>
+    <button type="button" class="btn btn-sm btn-tag btn-rounded d-flex align-items-center"
+            data-filter="brand" data-filter-key="<%= key %>">
+        <span><%= label %></span>
+        <span class="material-icons material-symbols-outlined fs-6 ms-2">close</span>
+    </button>
+  <% }); %>
+<% } %>
+
+<% if (filters.hasOwnProperty('country') && filters.country.length > 0) { %>
+    <% $.each(filters.country, function(key, label) { %>
+        <button type="button" class="btn btn-sm btn-tag btn-rounded d-flex align-items-center"
+                data-filter="country" data-filter-key="<%= key %>">
+            <span><%= label %></span>
+            <span class="material-icons material-symbols-outlined fs-6 ms-2">close</span>
+        </button>
+  <% }); %>
+<% } %>
+
+<% if (filters.hasOwnProperty('quantity_start') && filters.quantity_start > 0) { %>
+    <button type="button" class="btn btn-sm btn-tag btn-rounded d-flex align-items-center"
+            data-filter="quantity_start">
+        <span>от <%= filters.quantity_start %></span>
+        <span class="material-icons material-symbols-outlined fs-6 ms-2">close</span>
+    </button>
+<% } %>
+
+<% if (filters.hasOwnProperty('quantity_end') && filters.quantity_end > 0) { %>
+    <button type="button" class="btn btn-sm btn-tag btn-rounded d-flex align-items-center"
+            data-filter="quantity_end">
+        <span>до <%= filters.quantity_end %></span>
+        <span class="material-icons material-symbols-outlined fs-6 ms-2">close</span>
+    </button>
+<% } %>
+
+<% if (filters.hasOwnProperty('price_start') && filters.price_start > 0) { %>
+    <button type="button" class="btn btn-sm btn-tag btn-rounded d-flex align-items-center"
+            data-filter="price_start">
+        <span>от <%= filters.price_start %></span>
+        <small class="text-muted ms-1">BYN</small>
+        <span class="material-icons material-symbols-outlined fs-6 ms-2">close</span>
+    </button>
+<% } %>
+
+<% if (filters.hasOwnProperty('price_end') && filters.price_end > 0) { %>
+    <button type="button" class="btn btn-sm btn-tag btn-rounded d-flex align-items-center"
+            data-filter="price_end">
+      <span>до <%= filters.price_end %></span>
+      <small class="text-muted ms-1">BYN</small>
+      <span class="material-icons material-symbols-outlined fs-6 ms-2">close</span>
+    </button>
+<% } %>
+
+<% if (filters.hasOwnProperty('percent_start') && filters.percent_start > 0) { %>
+    <button type="button" class="btn btn-sm btn-tag btn-rounded d-flex align-items-center"
+            data-filter="percent_start">
+        <span>от <%= filters.percent_start %></span>
+        <small class="text-muted">%</small>
+        <span class="material-icons material-symbols-outlined fs-6 ms-2">close</span>
+    </button>
+<% } %>
+
+<% if (filters.hasOwnProperty('percent_end') && filters.percent_end > 0) { %>
+    <button type="button" class="btn btn-sm btn-tag btn-rounded d-flex align-items-center"
+            data-filter="percent_end">
+        <span>до <%= filters.percent_end %></span>
+        <small class="text-muted">%</small>
+        <span class="material-icons material-symbols-outlined fs-6 ms-2">close</span>
+    </button>
+<% } %>

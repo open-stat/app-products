@@ -1,0 +1,161 @@
+<h5 class="m-0 px-3 pt-2 pb-2">Фильтры</h5>
+
+<form onsubmit="appPageMenu.catalog.category.acceptedFilters();return false;" class="filters-form">
+  <ul class="list-unstyled p-3">
+    <li>
+      <div class="filters-title">
+        <label class="form-label fw-bolder" for="filter-title">Название товара</label>
+        <div class="filter-title mb-1">
+          <input type="text" id="filter-title" class="form-control form-control-sm" name="product_title[]"
+                 value="<% if (filters.hasOwnProperty('product_title') && filters.product_title[0]) { %><%= filters.product_title[0] %><% } %>"/>
+        </div>
+
+        <% if (filters.hasOwnProperty('product_title') && filters.product_title.length > 1) { %>
+          <% $.each(filters.product_title, function(key, product_title) { %>
+            <% if (key >= 1) { %>
+              <div class="filter-title mb-1 d-flex flex-nowrap align-items-center gap-1">
+                <input type="text" class="form-control form-control-sm" name="product_title[]" value="<%= product_title %>"/>
+                <i class="fa fa-times p-1" onclick="$(this).parent().remove()"></i>
+              </div>
+            <% } %>
+          <% }); %>
+        <% } %>
+      </div>
+
+      <button type="button" class="btn btn-sm btn-link text-capitalize btn-add-filter-title">еще</button>
+    </li>
+    <li>
+      <div class="filters-brand">
+        <label class="form-label fw-bolder" for="filter-brand">Бренд</label>
+        <div class="filter-brand mb-1">
+          <select id="filter-brand" class="form-control form-control-sm" name="brand[]">
+            <option value="">-</option>
+            <% $.each(brands, function(key, brand) { %>
+              <option value="<%= brand %>" <% if (filters.hasOwnProperty('brand') && filters.brand[0] === brand) { %>selected="selected"<% } %>>
+                <%= brand %>
+              </option>
+            <% }); %>
+          </select>
+        </div>
+
+        <% if (filters.hasOwnProperty('brand') && filters.brand.length > 1) { %>
+          <% $.each(filters.brand, function(key, filterBrand) { %>
+            <% if (key >= 1) { %>
+              <div class="filter-brand mb-1 d-flex flex-nowrap align-items-center gap-1">
+                <select class="form-control form-control-sm" name="brand[]">
+                  <option value="">-</option>
+                  <% $.each(brands, function(key, brand) { %>
+                    <option value="<%= brand %>" <% if (filterBrand === brand) { %>selected="selected"<% } %>>
+                      <%= brand %>
+                    </option>
+                  <% }); %>
+                </select>
+                <i class="fa fa-times p-1" onclick="$(this).parent().remove()"></i>
+              </div>
+            <% } %>
+          <% }); %>
+        <% } %>
+      </div>
+
+      <button type="button" class="btn btn-sm btn-link text-capitalize btn-add-filter-brand">еще</button>
+    </li>
+    <li>
+      <div class="filters-country">
+        <label class="form-label fw-bolder" for="filter-country">Страна производитель</label>
+        <div class="filter-country mb-1">
+          <select id="filter-country" class="form-control form-control-sm" name="country[]">
+            <option value="">-</option>
+            <% $.each(countries, function(key, country) { %>
+              <option value="<%= country %>" <% if (filters.hasOwnProperty('country') && filters.country[0] === country) { %>selected="selected"<% } %>>
+                <%= country %>
+              </option>
+            <% }); %>
+          </select>
+        </div>
+
+        <% if (filters.hasOwnProperty('country') && filters.country.length > 1) { %>
+          <% $.each(filters.country, function(key, filterCountry) { %>
+            <% if (key >= 1) { %>
+              <div class="filter-country mb-1 d-flex flex-nowrap align-items-center gap-1">
+                <select class="form-control form-control-sm" name="country[]">
+                  <option value="">-</option>
+                    <% $.each(countries, function(key, country) { %>
+                      <option value="<%= country %>" <% if (filterCountry === country) { %>selected="selected"<% } %>>
+                        <%= country %>
+                      </option>
+                    <% }); %>
+                </select>
+                <i class="fa fa-times p-1" onclick="$(this).parent().remove()"></i>
+              </div>
+            <% } %>
+          <% }); %>
+        <% } %>
+      </div>
+
+      <button type="button" class="btn btn-sm btn-link text-capitalize btn-add-filter-country">еще</button>
+    </li>
+    <li>
+      <label class="form-label fw-bolder">Литры / кг / шт</label>
+
+      <div class="row">
+        <div class="col-6">
+          <div class="form-outline">
+            <input type="number" min="0" id="filter-quantity-start" class="form-control form-control-sm" name="quantity_start"
+                   value="<% if (filters.hasOwnProperty('quantity_start') && filters.quantity_start) { %><%= filters.quantity_start %><% } %>"/>
+            <label class="form-label" for="filter-quantity-start">от</label>
+          </div>
+        </div>
+        <div class="col-6">
+          <div class="form-outline">
+            <input type="number" min="0" id="filter-quantity-end" class="form-control form-control-sm" name="quantity_end"
+                   value="<% if (filters.hasOwnProperty('quantity_end') && filters.quantity_end) { %><%= filters.quantity_end %><% } %>"/>
+            <label class="form-label" for="filter-quantity-end">до</label>
+          </div>
+        </div>
+      </div>
+    </li>
+    <li>
+      <label class="form-label fw-bolder">Цена <small>BYN</small></label>
+
+      <div class="row">
+        <div class="col-6">
+          <div class="form-outline col-sm-6">
+            <input type="number" min="0" id="filter-price-start" class="form-control form-control-sm" name="price_start"
+                   value="<% if (filters.hasOwnProperty('price_start') && filters.price_start) { %><%= filters.price_start %><% } %>"/>
+            <label class="form-label" for="filter-price-start">от</label>
+          </div>
+        </div>
+        <div class="col-6">
+          <div class="form-outline col-sm-6">
+            <input type="number" min="0" id="filter-price-end" class="form-control form-control-sm" name="price_end"
+                   value="<% if (filters.hasOwnProperty('price_end') && filters.price_end) { %><%= filters.price_end %><% } %>"/>
+            <label class="form-label" for="filter-price-end">до</label>
+          </div>
+        </div>
+      </div>
+    </li>
+    <li class="mb-4">
+      <label class="form-label fw-bolder">Процентность (при наличии)</label>
+
+      <div class="row">
+        <div class="col-6">
+          <div class="form-outline col-sm-6">
+            <input type="number" min="0" id="filter-percent-start" class="form-control form-control-sm" name="percent_start"
+                   value="<% if (filters.hasOwnProperty('percent_start') && filters.percent_start) { %><%= filters.percent_start %><% } %>"/>
+            <label class="form-label" for="filter-percent-start">от</label>
+          </div>
+        </div>
+        <div class="col-6">
+          <div class="form-outline col-sm-6">
+            <input type="number" min="0" id="filter-percent-end" class="form-control form-control-sm" name="percent_end"
+                   value="<% if (filters.hasOwnProperty('percent_end') && filters.percent_end) { %><%= filters.percent_end %><% } %>"/>
+            <label class="form-label" for="filter-percent-end">до</label>
+          </div>
+        </div>
+      </div>
+    </li>
+    <li>
+      <button type="submit" class="btn btn-sm btn-primary btn-filter-accepted">Применить</button>
+    </li>
+  </ul>
+</form>

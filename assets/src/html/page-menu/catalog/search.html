@@ -1,0 +1,18 @@
+<div class="position-relative">
+  <% if (searched.length > 0) { %>
+    <ul class="list-group list-group-light">
+      <% $.each(searched, function(key, item) { %>
+        <a href="#" class="list-group-item d-flex justify-content-between align-items-center ripple"
+           data-category-id="<%= item.categoryId %>">
+          <div>
+            <div class="fw-bold"><%= item.sectionTitle %></div>
+            <div class="text-muted"><%= item.categoryTitle %></div>
+          </div>
+          <span class="material-icons material-symbols-outlined">chevron_right</span>
+        </a>
+      <% }); %>
+    </ul>
+  <% } else { %>
+    <h4 class="text-muted mt-5 px-3">Разделы не найдены</h4>
+  <% } %>
+</div>

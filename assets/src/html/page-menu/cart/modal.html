@@ -1,0 +1,40 @@
+<div class="mb-4">
+    <b><%= shop.title %></b>
+    <%= labels.join(', ') %>
+</div>
+
+<ul class="cart-modal__container list-group list-group-light list-group-small">
+    <% $.each(products, function(key, product) { %>
+    <li class="list-group-item list-group-item-action d-flex justify-content-between align-items-stretch p-0 rounded-0
+               product-id-<%= product.id %> <% if (product.id === selectProduct.id) { %>active<% } %> "
+        data-product-id="<%= product.id %>">
+        <div class="product-img d-flex justify-content-center align-items-center">
+            <i class="fs-1 fa-solid fa-spinner fa-spin-pulse"></i>
+        </div>
+        <div class="product-title p-2">
+            <div class="fw-normal lh-sm"><%= product.title %></div>
+        </div>
+        <div class="product-price pe-1">
+            <% if (product.standard_price > 0) { %>
+            <div class="product-price-standard">
+                <div class="product-price-standard-row-1">
+                    <b><%= product.standard_price %> </b>
+                    <small><%= product.currency %> </small>
+                </div>
+                <div class="product-price-standard-row-2 mb-1">
+                    за <b><%= product.standard_unit %></b>
+                </div>
+            </div>
+            <% } %>
+
+            <div class="product-price-unit">
+                <span><%= product.price %> </span>
+                <small class="text-muted"><%= product.currency %></small>
+            </div>
+            <div class="product-price-date text-muted">
+                <small><%= moment(product.date_price).format('DD.MM.YYYY') %> </small>
+            </div>
+        </div>
+    </li>
+    <% }); %>
+</ul>

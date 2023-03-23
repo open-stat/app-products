@@ -1,0 +1,86 @@
+<% if (productsTop.length > 0) { %>
+<div class="products-top-container">
+    <h4 class="px-3 pb-2 m-0 border-bottom border-1">Самые выгодные предложения</h4>
+
+    <ul class="list-group list-group-light mb-4">
+        <% $.each(productsTop, function(key, product) { %>
+        <li class="list-group-item list-group-item-action d-flex justify-content-between align-items-stretch p-0 product-item"
+            data-product-id="<%= product.id %>">
+            <div class="product-img d-flex justify-content-center align-items-center">
+                <i class="fs-1 fa-solid fa-spinner fa-spin-pulse"></i>
+            </div>
+            <div class="product-title p-2">
+                <div class="fw-normal lh-sm"><%= product.title %></div>
+                <small class="fs-10 shop-title shop-<%= product.shop_name %>"><%= product.shop_title %></small>
+            </div>
+            <div class="product-price pe-2">
+                <% if (product.standard_price > 0) { %>
+                <div class="product-price-standard">
+                    <div class="product-price-standard-row-1">
+                        <b><%= product.standard_price %> </b>
+                        <small><%= product.currency %> </small>
+                    </div>
+                    <div class="product-price-standard-row-2 mb-1">
+                        за <b><%= product.standard_unit %></b>
+                    </div>
+                </div>
+                <% } %>
+
+                <div class="product-price-unit">
+                    <span><%= product.price %> </span>
+                    <small class="text-muted"><%= product.currency %></small>
+                </div>
+
+                <div class="product-price-date text-muted">
+                    <small><%= moment(product.date_price).format('DD.MM.YYYY') %> </small>
+                </div>
+            </div>
+        </li>
+        <% }); %>
+    </ul>
+</div>
+<% } %>
+
+<% if (products.length > 0) { %>
+<div class="products-other-container">
+    <h4 class="px-3 pb-2 m-0 border-bottom border-1">Найденные товары: <%= productsTotal %></h4>
+
+    <% $.each(products, function(key, product) { %>
+    <li class="list-group-item list-group-item-action d-flex justify-content-between align-items-stretch p-0 product-item"
+        data-product-id="<%= product.id %>">
+        <div class="product-img d-flex justify-content-center align-items-center">
+            <i class="fs-1 fa-solid fa-spinner fa-spin-pulse"></i>
+        </div>
+        <div class="product-title p-2">
+            <div class="fw-normal lh-sm"><%= product.title %></div>
+            <small class="fs-10 shop-title shop-<%= product.shop_name %>"><%= product.shop_title %></small>
+        </div>
+        <div class="product-price pe-2">
+            <% if (product.standard_price > 0) { %>
+            <div class="product-price-standard">
+                <div class="product-price-standard-row-1">
+                    <b><%= product.standard_price %> </b>
+                    <small><%= product.currency %> </small>
+                </div>
+                <div class="product-price-standard-row-2 mb-1">
+                    за <b><%= product.standard_unit %></b>
+                </div>
+            </div>
+            <% } %>
+
+            <div class="product-price-unit">
+                <span><%= product.price %> </span>
+                <small class="text-muted"><%= product.currency %></small>
+            </div>
+            <div class="product-price-date text-muted">
+                <small><%= moment(product.date_price).format('DD.MM.YYYY') %> </small>
+            </div>
+        </div>
+    </li>
+    <% }); %>
+</div>
+<% } %>
+
+<% if (productsTop.length == 0 && products.length == 0) { %>
+<h4 class="px-3 text-muted text-center">Товары не найдены</h4>
+<% } %>
