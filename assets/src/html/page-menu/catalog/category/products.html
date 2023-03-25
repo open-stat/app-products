@@ -1,10 +1,10 @@
 <% if (productsTop.length > 0) { %>
 <div class="products-top-container">
-    <h4 class="px-3 pb-2 m-0 border-bottom border-1">Самые выгодные предложения</h4>
+    <h5 class="px-3 pb-2 m-0 border-bottom border-1">Самые выгодные</h5>
 
     <ul class="list-group list-group-light mb-4">
         <% $.each(productsTop, function(key, product) { %>
-        <li class="list-group-item list-group-item-action d-flex justify-content-between align-items-stretch p-0 product-item"
+        <li class="list-group-item d-flex justify-content-between align-items-stretch p-0 product-item"
             data-product-id="<%= product.id %>">
             <div class="product-img d-flex justify-content-center align-items-center">
                 <i class="fs-1 fa-solid fa-spinner fa-spin-pulse"></i>
@@ -14,24 +14,24 @@
                 <small class="fs-10 shop-title shop-<%= product.shop_name %>"><%= product.shop_title %></small>
             </div>
             <div class="product-price pe-2">
+                <div class="product-price-unit">
+                    <b><%= product.price %></b>
+                    <small class="text-muted"><%= product.currency %></small>
+                </div>
+
                 <% if (product.standard_price > 0) { %>
-                <div class="product-price-standard">
+                <div class="product-price-standard text-muted">
                     <div class="product-price-standard-row-1">
-                        <b><%= product.standard_price %> </b>
+                        <span><%= product.standard_price %> </span>
                         <small><%= product.currency %> </small>
                     </div>
-                    <div class="product-price-standard-row-2 mb-1">
+                    <div class="product-price-standard-row-2">
                         за <b><%= product.standard_unit %></b>
                     </div>
                 </div>
                 <% } %>
 
-                <div class="product-price-unit">
-                    <span><%= product.price %> </span>
-                    <small class="text-muted"><%= product.currency %></small>
-                </div>
-
-                <div class="product-price-date text-muted">
+                <div class="product-price-date text-muted mt-2">
                     <small><%= moment(product.date_price).format('DD.MM.YYYY') %> </small>
                 </div>
             </div>
@@ -43,10 +43,11 @@
 
 <% if (products.length > 0) { %>
 <div class="products-other-container">
-    <h4 class="px-3 pb-2 m-0 border-bottom border-1">Найденные товары: <%= productsTotal %></h4>
+    <h5 class="px-3 pb-2 m-0 border-bottom border-1">Другие товары: <%= productsTotal %></h5>
 
+    <ul class="list-group list-group-light mb-4">
     <% $.each(products, function(key, product) { %>
-    <li class="list-group-item list-group-item-action d-flex justify-content-between align-items-stretch p-0 product-item"
+    <li class="list-group-item d-flex justify-content-between align-items-stretch p-0 product-item"
         data-product-id="<%= product.id %>">
         <div class="product-img d-flex justify-content-center align-items-center">
             <i class="fs-1 fa-solid fa-spinner fa-spin-pulse"></i>
@@ -56,28 +57,30 @@
             <small class="fs-10 shop-title shop-<%= product.shop_name %>"><%= product.shop_title %></small>
         </div>
         <div class="product-price pe-2">
+            <div class="product-price-unit">
+                <b><%= product.price %> </b>
+                <small><%= product.currency %></small>
+            </div>
+
             <% if (product.standard_price > 0) { %>
-            <div class="product-price-standard">
+            <div class="product-price-standard text-muted">
                 <div class="product-price-standard-row-1">
-                    <b><%= product.standard_price %> </b>
+                    <span><%= product.standard_price %> </span>
                     <small><%= product.currency %> </small>
                 </div>
-                <div class="product-price-standard-row-2 mb-1">
+                <div class="product-price-standard-row-2">
                     за <b><%= product.standard_unit %></b>
                 </div>
             </div>
             <% } %>
 
-            <div class="product-price-unit">
-                <span><%= product.price %> </span>
-                <small class="text-muted"><%= product.currency %></small>
-            </div>
-            <div class="product-price-date text-muted">
+            <div class="product-price-date text-muted mt-2">
                 <small><%= moment(product.date_price).format('DD.MM.YYYY') %> </small>
             </div>
         </div>
     </li>
     <% }); %>
+    </ul>
 </div>
 <% } %>
 

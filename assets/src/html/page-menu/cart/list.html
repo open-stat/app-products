@@ -32,22 +32,22 @@
                         <i class="fs-1 fa-solid fa-spinner fa-spin-pulse"></i>
                     </div>
 
-                    <div class="cart-shop__product__header p-2">
+                    <div class="cart-shop__product__header p-2 pt-1">
+                        <small class="cart-shop__product__header-subtitle text-success"><%= filter.labels.join(', ') %></small>
                         <div class="cart-shop__product__header-title fw-normal lh-sm">
                             <span class="placeholder col-9"></span>
                         </div>
-                        <small class="cart-shop__product__header-subtitle text-muted"><%= filter.labels.join(', ') %></small>
                     </div>
 
                     <div class="cart-shop__product__price py-2 pe-2 text-right lh-sm">
                         <div class="cart-shop__product__price-origin">
-                            <span class="cart-shop__product__price_amount">
+                            <b class="cart-shop__product__price_amount">
                                 <span class="placeholder col-10"></span>
-                            </span>
+                            </b>
                             <small class="cart-shop__product__price_currency text-muted"></small>
                         </div>
 
-                        <div class="cart-shop__product__price-standard text-muted mb-2" style="display: none">
+                        <div class="cart-shop__product__price-standard text-muted" style="display: none">
                             <div class="cart-shop__product__price-standard-row-1">
                                 <span class="cart-shop__product__price-standard-amount"></span>
                                 <small class="cart-shop__product__price-standard-currency"></small>
@@ -57,7 +57,7 @@
                             </div>
                         </div>
 
-                        <div class="cart-shop__product__price-date text-muted"></div>
+                        <div class="cart-shop__product__price-date text-muted mt-2"></div>
                     </div>
 
                     <div class="cart-shop__product__controls pe-2 pt-2">

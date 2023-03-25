@@ -15,23 +15,24 @@
             <div class="fw-normal lh-sm"><%= product.title %></div>
         </div>
         <div class="product-price pe-1">
+            <div class="product-price-unit">
+                <b><%= product.price %> </b>
+                <small><%= product.currency %></small>
+            </div>
+
             <% if (product.standard_price > 0) { %>
-            <div class="product-price-standard">
+            <div class="product-price-standard text-muted">
                 <div class="product-price-standard-row-1">
-                    <b><%= product.standard_price %> </b>
+                    <span><%= product.standard_price %> </span>
                     <small><%= product.currency %> </small>
                 </div>
-                <div class="product-price-standard-row-2 mb-1">
+                <div class="product-price-standard-row-2">
                     за <b><%= product.standard_unit %></b>
                 </div>
             </div>
             <% } %>
 
-            <div class="product-price-unit">
-                <span><%= product.price %> </span>
-                <small class="text-muted"><%= product.currency %></small>
-            </div>
-            <div class="product-price-date text-muted">
+            <div class="product-price-date text-muted mt-2">
                 <small><%= moment(product.date_price).format('DD.MM.YYYY') %> </small>
             </div>
         </div>

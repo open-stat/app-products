@@ -118,22 +118,22 @@ window["appTemplates"]["page-menu/cart/list"] = "\n" +
     "                        <i class=\"fs-1 fa-solid fa-spinner fa-spin-pulse\"></i>\n" +
     "                    </div>\n" +
     "\n" +
-    "                    <div class=\"cart-shop__product__header p-2\">\n" +
+    "                    <div class=\"cart-shop__product__header p-2 pt-1\">\n" +
+    "                        <small class=\"cart-shop__product__header-subtitle text-success\"><%= filter.labels.join(', ') %></small>\n" +
     "                        <div class=\"cart-shop__product__header-title fw-normal lh-sm\">\n" +
     "                            <span class=\"placeholder col-9\"></span>\n" +
     "                        </div>\n" +
-    "                        <small class=\"cart-shop__product__header-subtitle text-muted\"><%= filter.labels.join(', ') %></small>\n" +
     "                    </div>\n" +
     "\n" +
     "                    <div class=\"cart-shop__product__price py-2 pe-2 text-right lh-sm\">\n" +
     "                        <div class=\"cart-shop__product__price-origin\">\n" +
-    "                            <span class=\"cart-shop__product__price_amount\">\n" +
+    "                            <b class=\"cart-shop__product__price_amount\">\n" +
     "                                <span class=\"placeholder col-10\"></span>\n" +
-    "                            </span>\n" +
+    "                            </b>\n" +
     "                            <small class=\"cart-shop__product__price_currency text-muted\"></small>\n" +
     "                        </div>\n" +
     "\n" +
-    "                        <div class=\"cart-shop__product__price-standard text-muted mb-2\" style=\"display: none\">\n" +
+    "                        <div class=\"cart-shop__product__price-standard text-muted\" style=\"display: none\">\n" +
     "                            <div class=\"cart-shop__product__price-standard-row-1\">\n" +
     "                                <span class=\"cart-shop__product__price-standard-amount\"></span>\n" +
     "                                <small class=\"cart-shop__product__price-standard-currency\"></small>\n" +
@@ -143,7 +143,7 @@ window["appTemplates"]["page-menu/cart/list"] = "\n" +
     "                            </div>\n" +
     "                        </div>\n" +
     "\n" +
-    "                        <div class=\"cart-shop__product__price-date text-muted\"></div>\n" +
+    "                        <div class=\"cart-shop__product__price-date text-muted mt-2\"></div>\n" +
     "                    </div>\n" +
     "\n" +
     "                    <div class=\"cart-shop__product__controls pe-2 pt-2\">\n" +
@@ -181,23 +181,24 @@ window["appTemplates"]["page-menu/cart/modal"] = "<div class=\"mb-4\">\n" +
     "            <div class=\"fw-normal lh-sm\"><%= product.title %></div>\n" +
     "        </div>\n" +
     "        <div class=\"product-price pe-1\">\n" +
+    "            <div class=\"product-price-unit\">\n" +
+    "                <b><%= product.price %> </b>\n" +
+    "                <small><%= product.currency %></small>\n" +
+    "            </div>\n" +
+    "\n" +
     "            <% if (product.standard_price > 0) { %>\n" +
-    "            <div class=\"product-price-standard\">\n" +
+    "            <div class=\"product-price-standard text-muted\">\n" +
     "                <div class=\"product-price-standard-row-1\">\n" +
-    "                    <b><%= product.standard_price %> </b>\n" +
+    "                    <span><%= product.standard_price %> </span>\n" +
     "                    <small><%= product.currency %> </small>\n" +
     "                </div>\n" +
-    "                <div class=\"product-price-standard-row-2 mb-1\">\n" +
+    "                <div class=\"product-price-standard-row-2\">\n" +
     "                    за <b><%= product.standard_unit %></b>\n" +
     "                </div>\n" +
     "            </div>\n" +
     "            <% } %>\n" +
     "\n" +
-    "            <div class=\"product-price-unit\">\n" +
-    "                <span><%= product.price %> </span>\n" +
-    "                <small class=\"text-muted\"><%= product.currency %></small>\n" +
-    "            </div>\n" +
-    "            <div class=\"product-price-date text-muted\">\n" +
+    "            <div class=\"product-price-date text-muted mt-2\">\n" +
     "                <small><%= moment(product.date_price).format('DD.MM.YYYY') %> </small>\n" +
     "            </div>\n" +
     "        </div>\n" +
@@ -224,7 +225,7 @@ window["appTemplates"]["page-menu/catalog/categories"] = "\n" +
     ""; 
 
 window["appTemplates"]["page-menu/catalog/category"] = "<div class=\"position-relative category-id-<%= category.id %>\">\n" +
-    "    <div class=\"list-group list-group-light mb-3\">\n" +
+    "    <div class=\"list-group list-group-light\">\n" +
     "        <a href=\"#\" data-mdb-ripple-color=\"green\" class=\"list-group-item list-group-item-action d-flex justify-content-start align-items-center section-item border-bottom border-2 rounded-0 py-2\">\n" +
     "            <span class=\"material-icons material-symbols-outlined me-2\">chevron_left</span>\n" +
     "            <div>\n" +
@@ -234,7 +235,13 @@ window["appTemplates"]["page-menu/catalog/category"] = "<div class=\"position-re
     "        </a>\n" +
     "    </div>\n" +
     "\n" +
+    "    <div class=\"alert alert-info px-3 p-2 mb-4 rounded-0\">\n" +
+    "        <i class=\"fas fa-info-circle me-3\"></i>\n" +
+    "        Подберите товары и сохраните фильтр\n" +
+    "    </div>\n" +
+    "\n" +
     "    <div class=\"filters-controls px-3 mb-5\" style=\"display: none\">\n" +
+    "\n" +
     "        <div class=\"d-flex justify-content-between align-items-center mb-3\">\n" +
     "            <button type=\"button\" class=\"btn btn-sm btn-secondary btn-show-filters\">\n" +
     "                <i class=\"fas fa-filter me-2\"></i>\n" +
@@ -242,7 +249,7 @@ window["appTemplates"]["page-menu/catalog/category"] = "<div class=\"position-re
     "            </button>\n" +
     "            <button type=\"button\" class=\"btn btn-sm btn-success btn-save-filters\">\n" +
     "                <i class=\"fas fa-save me-2\"></i>\n" +
-    "                Сохранить\n" +
+    "                Сохранить фильтр\n" +
     "            </button>\n" +
     "        </div>\n" +
     "        <div class=\"filters-labels\"></div>\n" +
@@ -524,11 +531,11 @@ window["appTemplates"]["page-menu/catalog/category/labels"] = "<% if (filters.ha
 
 window["appTemplates"]["page-menu/catalog/category/products"] = "<% if (productsTop.length > 0) { %>\n" +
     "<div class=\"products-top-container\">\n" +
-    "    <h4 class=\"px-3 pb-2 m-0 border-bottom border-1\">Самые выгодные предложения</h4>\n" +
+    "    <h5 class=\"px-3 pb-2 m-0 border-bottom border-1\">Самые выгодные</h5>\n" +
     "\n" +
     "    <ul class=\"list-group list-group-light mb-4\">\n" +
     "        <% $.each(productsTop, function(key, product) { %>\n" +
-    "        <li class=\"list-group-item list-group-item-action d-flex justify-content-between align-items-stretch p-0 product-item\" data-product-id=\"<%= product.id %>\">\n" +
+    "        <li class=\"list-group-item d-flex justify-content-between align-items-stretch p-0 product-item\" data-product-id=\"<%= product.id %>\">\n" +
     "            <div class=\"product-img d-flex justify-content-center align-items-center\">\n" +
     "                <i class=\"fs-1 fa-solid fa-spinner fa-spin-pulse\"></i>\n" +
     "            </div>\n" +
@@ -537,24 +544,24 @@ window["appTemplates"]["page-menu/catalog/category/products"] = "<% if (products
     "                <small class=\"fs-10 shop-title shop-<%= product.shop_name %>\"><%= product.shop_title %></small>\n" +
     "            </div>\n" +
     "            <div class=\"product-price pe-2\">\n" +
+    "                <div class=\"product-price-unit\">\n" +
+    "                    <b><%= product.price %></b>\n" +
+    "                    <small class=\"text-muted\"><%= product.currency %></small>\n" +
+    "                </div>\n" +
+    "\n" +
     "                <% if (product.standard_price > 0) { %>\n" +
-    "                <div class=\"product-price-standard\">\n" +
+    "                <div class=\"product-price-standard text-muted\">\n" +
     "                    <div class=\"product-price-standard-row-1\">\n" +
-    "                        <b><%= product.standard_price %> </b>\n" +
+    "                        <span><%= product.standard_price %> </span>\n" +
     "                        <small><%= product.currency %> </small>\n" +
     "                    </div>\n" +
-    "                    <div class=\"product-price-standard-row-2 mb-1\">\n" +
+    "                    <div class=\"product-price-standard-row-2\">\n" +
     "                        за <b><%= product.standard_unit %></b>\n" +
     "                    </div>\n" +
     "                </div>\n" +
     "                <% } %>\n" +
     "\n" +
-    "                <div class=\"product-price-unit\">\n" +
-    "                    <span><%= product.price %> </span>\n" +
-    "                    <small class=\"text-muted\"><%= product.currency %></small>\n" +
-    "                </div>\n" +
-    "\n" +
-    "                <div class=\"product-price-date text-muted\">\n" +
+    "                <div class=\"product-price-date text-muted mt-2\">\n" +
     "                    <small><%= moment(product.date_price).format('DD.MM.YYYY') %> </small>\n" +
     "                </div>\n" +
     "            </div>\n" +
@@ -566,10 +573,11 @@ window["appTemplates"]["page-menu/catalog/category/products"] = "<% if (products
     "\n" +
     "<% if (products.length > 0) { %>\n" +
     "<div class=\"products-other-container\">\n" +
-    "    <h4 class=\"px-3 pb-2 m-0 border-bottom border-1\">Найденные товары: <%= productsTotal %></h4>\n" +
+    "    <h5 class=\"px-3 pb-2 m-0 border-bottom border-1\">Другие товары: <%= productsTotal %></h5>\n" +
     "\n" +
+    "    <ul class=\"list-group list-group-light mb-4\">\n" +
     "    <% $.each(products, function(key, product) { %>\n" +
-    "    <li class=\"list-group-item list-group-item-action d-flex justify-content-between align-items-stretch p-0 product-item\" data-product-id=\"<%= product.id %>\">\n" +
+    "    <li class=\"list-group-item d-flex justify-content-between align-items-stretch p-0 product-item\" data-product-id=\"<%= product.id %>\">\n" +
     "        <div class=\"product-img d-flex justify-content-center align-items-center\">\n" +
     "            <i class=\"fs-1 fa-solid fa-spinner fa-spin-pulse\"></i>\n" +
     "        </div>\n" +
@@ -578,28 +586,30 @@ window["appTemplates"]["page-menu/catalog/category/products"] = "<% if (products
     "            <small class=\"fs-10 shop-title shop-<%= product.shop_name %>\"><%= product.shop_title %></small>\n" +
     "        </div>\n" +
     "        <div class=\"product-price pe-2\">\n" +
+    "            <div class=\"product-price-unit\">\n" +
+    "                <b><%= product.price %> </b>\n" +
+    "                <small><%= product.currency %></small>\n" +
+    "            </div>\n" +
+    "\n" +
     "            <% if (product.standard_price > 0) { %>\n" +
-    "            <div class=\"product-price-standard\">\n" +
+    "            <div class=\"product-price-standard text-muted\">\n" +
     "                <div class=\"product-price-standard-row-1\">\n" +
-    "                    <b><%= product.standard_price %> </b>\n" +
+    "                    <span><%= product.standard_price %> </span>\n" +
     "                    <small><%= product.currency %> </small>\n" +
     "                </div>\n" +
-    "                <div class=\"product-price-standard-row-2 mb-1\">\n" +
+    "                <div class=\"product-price-standard-row-2\">\n" +
     "                    за <b><%= product.standard_unit %></b>\n" +
     "                </div>\n" +
     "            </div>\n" +
     "            <% } %>\n" +
     "\n" +
-    "            <div class=\"product-price-unit\">\n" +
-    "                <span><%= product.price %> </span>\n" +
-    "                <small class=\"text-muted\"><%= product.currency %></small>\n" +
-    "            </div>\n" +
-    "            <div class=\"product-price-date text-muted\">\n" +
+    "            <div class=\"product-price-date text-muted mt-2\">\n" +
     "                <small><%= moment(product.date_price).format('DD.MM.YYYY') %> </small>\n" +
     "            </div>\n" +
     "        </div>\n" +
     "    </li>\n" +
     "    <% }); %>\n" +
+    "    </ul>\n" +
     "</div>\n" +
     "<% } %>\n" +
     "\n" +
