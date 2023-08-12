@@ -144,8 +144,6 @@ var appTools = {
                     reject();
                 }
             });
-
-
         }
 
 
